@@ -85,7 +85,57 @@ int main(int argc, char* argv[])
     cout << "Original list: ";
     print(head);
 
-    // Test out your linked list code
+    string input;
+    
+    while (true) {
+        cout << "Enter a command \n   1: test llpivot \n   2: test llfilter \n   q: quit " << endl;
+        cin >> input;
+
+        if (input == "q") 
+        {
+            cout << "Quiting" << endl;
+            break;
+        } 
+        else if (input == "1") 
+        {
+            cout << "------------------------------------------------------------------------" << endl;
+            cout << "RUNNING PIVOT" << endl;
+            Node* smaller = nullptr;
+            Node* larger = nullptr;
+
+            cout << "Enter a number to pivot" << endl;
+            int pivot;
+            cin >> pivot;
+
+            llpivot(head, smaller, larger, pivot);
+            cout << "   Small after running llpivot: ";
+            print(smaller);
+            cout << "   Large after running llpivot: ";
+            print(larger);
+            cout << "   Head after running llpivot:";
+            print(head); 
+            cout << "------------------------------------------------------------------------" << endl;
+        } 
+        else if (input == "2") 
+        {
+            cout << "------------------------------------------------------------------------" << endl;
+            std::cout << "RUNNING FILTER" << endl;
+
+            head = llfilter(head, [](int val) { return val == 0; }); // even test
+            cout << "   Head after running llfilter: ";
+            print(head);
+
+            cout << "------------------------------------------------------------------------" << endl;
+        } 
+        else 
+        {
+            std::cout << "Invalid input.\n";
+        }
+        
+        // resets head
+        head = readList(argv[1]);
+    }
+
 
 
 
